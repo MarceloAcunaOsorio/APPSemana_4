@@ -1,5 +1,6 @@
 package com.marceloacuna.appsemana4.Pages
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -14,20 +15,48 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.marceloacuna.appsemana4.AuthState
 import com.marceloacuna.appsemana4.AuthViewModel
 import com.marceloacuna.appsemana4.R
 import com.marceloacuna.appsemana4.Routes
 
 @Composable
 fun Registrar(modifier: Modifier = Modifier,navController: NavController,authViewModel: AuthViewModel){
+
+    //se declara variable para capturar los datos ingresados
+    var nombrecompleto by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var confirmarpassword by remember { mutableStateOf("") }
+    var fechanacimiento by remember { mutableStateOf("") }
+    var direccion by remember { mutableStateOf("") }
+
+    val authState = authViewModel.authState.observeAsState()
+    val context = LocalContext.current
+
+    LaunchedEffect(authState.value) {
+        when(authState.value)
+        {
+            is AuthState.Authenticated -> navController.navigate(Routes.home)
+            is AuthState.Error -> Toast.makeText(context,(authState.value as AuthState.Error).message,Toast.LENGTH_SHORT).show()
+            else -> Unit
+        }
+    }
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -46,47 +75,46 @@ fun Registrar(modifier: Modifier = Modifier,navController: NavController,authVie
         Spacer(modifier = Modifier.height(4.dp))
 
         //Input para ingresar el Nombre
-        OutlinedTextField(value = "", onValueChange = {}, label = {Text(text = "Nombre Completo")},shape = RoundedCornerShape(50))
+        OutlinedTextField(value = nombrecompleto, onValueChange = {nombrecompleto = it}, label = {Text(text = "Nombre Completo")},shape = RoundedCornerShape(50))
 
         //salto de linea
         Spacer(modifier = Modifier.height(4.dp))
 
         //Input para ingresar el Email
-        OutlinedTextField(value = "", onValueChange = {}, label = {Text(text = "Email")},shape = RoundedCornerShape(50))
+        OutlinedTextField(value = email, onValueChange = {email = it}, label = {Text(text = "Email")},shape = RoundedCornerShape(50))
 
         //salto de linea
         Spacer(modifier = Modifier.height(4.dp))
 
         //Input para ingresar el Password
-        OutlinedTextField(value = "", onValueChange = {}, label = {Text(text = "Contraseña")},shape = RoundedCornerShape(50))
+        OutlinedTextField(value = password, onValueChange = {password = it}, label = {Text(text = "Contraseña")},shape = RoundedCornerShape(50))
 
         //salto de linea
         Spacer(modifier = Modifier.height(4.dp))
 
         //Input para ingresar el Confirmar Password
-        OutlinedTextField(value = "", onValueChange = {}, label = {Text(text = "Confirmar Contraseña")},shape = RoundedCornerShape(50))
+        OutlinedTextField(value = confirmarpassword, onValueChange = {confirmarpassword = it}, label = {Text(text = "Confirmar Contraseña")},shape = RoundedCornerShape(50))
 
         //salto de linea
         Spacer(modifier = Modifier.height(4.dp))
 
         //Input para ingresar Fecha de Nacimiento
-        OutlinedTextField(value = "", onValueChange = {}, label = {Text(text = "Fecha de Nacimiento")},shape = RoundedCornerShape(50))
+        OutlinedTextField(value = fechanacimiento, onValueChange = {fechanacimiento = it}, label = {Text(text = "Fecha de Nacimiento")},shape = RoundedCornerShape(50))
 
         //salto de linea
         Spacer(modifier = Modifier.height(4.dp))
 
         //Input para ingresar direccion
-        OutlinedTextField(value = "", onValueChange = {}, label = {Text(text = "Dirección")},shape = RoundedCornerShape(50))
+        OutlinedTextField(value = direccion, onValueChange = {direccion = it}, label = {Text(text = "Dirección")},shape = RoundedCornerShape(50))
 
         //salto de linea
         Spacer(modifier = Modifier.height(16.dp))
 
         //boton Registrar
-        Button(onClick = {}) {
-            Text(text = "Registrarse",
-                modifier = Modifier.height(20.dp).width(100.dp),
-                textAlign = TextAlign.Center
-            )
+        Button(onClick = {authViewModel.Registrar(nombrecompleto,email,password,confirmarpassword,fechanacimiento,direccion)},
+            enabled = authState.value != AuthState.Loading)
+        {
+            Text(text="Registrarse",modifier = Modifier.height(20.dp).width(100.dp),textAlign = TextAlign.Center)
         }
 
         //salto de linea

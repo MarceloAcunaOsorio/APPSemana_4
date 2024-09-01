@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "590711230305",
+    "project_id": "app-semana-4",
+    "storage_bucket": "app-semana-4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:590711230305:android:6827092558909e621f3f20",
+        "android_client_info": {
+          "package_name": "com.marceloacuna.appsemana4"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA26iMvKRYcfJZRabg6mYF-QfoiQoDWWAU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
