@@ -38,7 +38,7 @@ fun LoginScreen() {
 
    {
       //imagen de pantalla de inicio
-      Image(painter = painterResource(id = R.drawable.logotienda), contentDescription = "Login Image",
+      Image(painter = painterResource(id = R.drawable.ramen), contentDescription = "Login Image",
          modifier = Modifier.size(200.dp))
 
       //texto de pantalla de inicio y su estilo
