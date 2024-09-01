@@ -4,8 +4,10 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
@@ -76,6 +78,37 @@ fun LoginScreen() {
       
       Text(text = "o iniciar seción con")
 
+      //salto de linea
+      Spacer(modifier = Modifier.height(10.dp))
+
+      Row (
+         modifier = Modifier.fillMaxWidth(),
+         horizontalArrangement = Arrangement.SpaceEvenly
+      )
+
+      {
+
+         //imagen de registro -> google
+         Image(painter = painterResource(id = R.drawable.logo_google1), contentDescription = "google Image",
+            modifier = Modifier
+               .size(50.dp)
+               .clickable { /*se agrega codigo al hacer click*/ })
+
+
+         //imagen de registro -> facebook
+         Image(painter = painterResource(id = R.drawable.logo_facebook), contentDescription = "facebook Image",
+            modifier = Modifier
+               .size(45.dp)
+               .clickable { /*se agrega codigo al hacer click*/ })
+
+
+         //imagen de registro -> twiter
+         Image(painter = painterResource(id = R.drawable.logo_twiter1), contentDescription = "twiter Image",
+            modifier = Modifier
+               .size(50.dp)
+               .clickable { /*se agrega codigo al hacer click*/ })
+
+      }
    }
 }
 
