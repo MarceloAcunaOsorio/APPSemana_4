@@ -11,16 +11,18 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -51,28 +53,43 @@ fun LoginScreen() {
       Spacer(modifier = Modifier.height(16.dp))
 
       //Input para ingresar el email
-      OutlinedTextField(value = "", onValueChange = {}, label = {Text(text = "Email")})
+      OutlinedTextField(value = "", onValueChange = {}, label = {Text(text = "Email")},shape = RoundedCornerShape(50))
 
       //salto de linea
       Spacer(modifier = Modifier.height(16.dp))
 
       //Input para ingresar el Contraseña
-      OutlinedTextField(value = "", onValueChange = {}, label = {Text(text = "Contraseña")})
-      
+      OutlinedTextField(value = "", onValueChange = {
+
+      }, label = {
+         Text(text = "Contraseña")
+                 },shape = RoundedCornerShape(50),
+         visualTransformation = PasswordVisualTransformation())
+
+
       //salto de linea
       Spacer(modifier = Modifier.height(16.dp))
-      
+
+
+      //boton Login
       Button(onClick = {}) {
-         Text(text = "Login")
+         Text(text = "Login",
+            modifier = Modifier.height(20.dp).width(100.dp),
+            textAlign = TextAlign.Center
+         )
       }
 
       //salto de linea
       Spacer(modifier = Modifier.height(32.dp))
+
+      //recuperar contraseña
+      Text(text = "Registrarse", modifier = Modifier.clickable {/*codigo que realiza la accion*/})
+
+      //salto de linea
+      Spacer(modifier = Modifier.height(20.dp))
       
       //recuperar contraseña
-      Text(text = "Recuperar Contraseña?", modifier = Modifier.clickable {
-
-      })
+      Text(text = "Recuperar Contraseña?", modifier = Modifier.clickable {/*codigo que realiza la accion*/})
 
       //salto de linea
       Spacer(modifier = Modifier.height(32.dp))
