@@ -1,6 +1,7 @@
-package com.marceloacuna.appsemana4
+package com.marceloacuna.appsemana4.Pages
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -20,9 +21,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.marceloacuna.appsemana4.AuthViewModel
+import com.marceloacuna.appsemana4.R
+import com.marceloacuna.appsemana4.Routes
 
 @Composable
-fun RegisterScreen(){
+fun Registrar(modifier: Modifier = Modifier,navController: NavController,authViewModel: AuthViewModel){
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -83,5 +88,14 @@ fun RegisterScreen(){
                 textAlign = TextAlign.Center
             )
         }
+
+        //salto de linea
+        Spacer(modifier = Modifier.height(16.dp))
+
+        //volver al login
+        Text(text = "Volver al Login", modifier = Modifier.clickable {
+            navController.navigate(Routes.Login)
+        })
+
     }
 }
