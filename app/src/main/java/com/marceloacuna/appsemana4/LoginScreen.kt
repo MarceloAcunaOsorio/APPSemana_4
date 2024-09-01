@@ -65,15 +65,19 @@ fun LoginScreen() {
 
       //salto de linea
       Spacer(modifier = Modifier.height(32.dp))
+      
+      //recuperar contraseña
+      Text(text = "Recuperar Contraseña?", modifier = Modifier.clickable {
 
+      })
 
-         Text(text = "Recuperar Contraseña?", modifier = Modifier.clickable {
-
-         })
+      //salto de linea
+      Spacer(modifier = Modifier.height(32.dp))
+      
+      Text(text = "o iniciar seción con")
 
    }
 }
-
 
 
 
