@@ -73,9 +73,9 @@ class AuthViewModel : ViewModel() {
             _authState.value = AuthState.Error("password invalida")
             return
         }
-        else if(confirmarContraseña.isEmpty())
+        else if(confirmarContraseña != password)
         {
-            _authState.value = AuthState.Error("password invalida")
+            _authState.value = AuthState.Error("password no coinciden")
             return
         }
         else if(fechaNacimiento.isEmpty())
