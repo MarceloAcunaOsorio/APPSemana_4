@@ -34,6 +34,7 @@ import com.marceloacuna.appsemana4.AuthState
 import com.marceloacuna.appsemana4.AuthViewModel
 import com.marceloacuna.appsemana4.R
 import com.marceloacuna.appsemana4.Routes
+import java.util.Calendar
 
 @Composable
 fun Registrar(modifier: Modifier = Modifier,navController: NavController,authViewModel: AuthViewModel){
@@ -43,11 +44,20 @@ fun Registrar(modifier: Modifier = Modifier,navController: NavController,authVie
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var confirmarpassword by remember { mutableStateOf("") }
-    var fechanacimiento by remember { mutableStateOf("") }
     var direccion by remember { mutableStateOf("") }
 
     val authState = authViewModel.authState.observeAsState()
     val context = LocalContext.current
+
+
+    //variables de datepicker
+    val c = Calendar.getInstance()
+    val year = c.get(Calendar.YEAR)
+    val month = c.get(Calendar.MONTH)
+    val day = c.get(Calendar.DAY_OF_MONTH)
+
+    var fechanacimiento by remember { mutableStateOf("") }
+
 
     LaunchedEffect(authState.value) {
         when(authState.value)
