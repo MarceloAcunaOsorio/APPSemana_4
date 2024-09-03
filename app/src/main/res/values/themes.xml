@@ -2,4 +2,8 @@
 <resources>
 
     <style name="Theme.APPSemana4" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="roundImage">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>
